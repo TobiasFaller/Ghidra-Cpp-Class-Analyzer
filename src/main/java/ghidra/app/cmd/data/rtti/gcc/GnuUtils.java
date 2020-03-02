@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import docking.Tool;
+import docking.DockingTool;
 import ghidra.program.model.data.DataType;
 import ghidra.program.model.data.LongLongDataType;
 import ghidra.app.util.demangler.DemangledDataType;
@@ -328,8 +328,8 @@ public final class GnuUtils {
     private static Program openProgram(String path) {
         Project project = AppInfo.getActiveProject();
         DomainFile file = project.getProjectData().getFile(path);
-        Tool[] tools = project.getToolManager().getRunningTools();
-        for (Tool tool : tools) {
+        DockingTool[] tools = project.getToolManager().getRunningTools();
+        for (DockingTool tool : tools) {
             if (tool instanceof PluginTool) {
                 return getProgramManager((PluginTool) tool, false).openProgram(file);
             }
